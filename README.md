@@ -1,5 +1,5 @@
 # microblog
-A blogging web application using Python and Flask. Test
+A blogging web application using Python and Flask. 
 
 ## How to Run
 1. Activate your virtual environment:
