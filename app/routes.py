@@ -39,8 +39,9 @@ def index():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    posts = db.session.scalars(current_user.following_posts()).all()
-    return render_template("index.html", title='Home Page', form=form, posts=posts)
+    page = request.args.get('page', 1, type=int)
+    posts = db.paginate(current_user.following_posts(), page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
+    return render_template('index.html', title='Home', form=form, posts=posts.items)
 # Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -155,6 +156,7 @@ def unfollow(username):
 @app.route('/explore')
 @login_required
 def explore():
+    page = request.args.get('page', 1, type=int)
     query = sa.select(Post).order_by(Post.timestamp.desc())
-    posts = db.session.scalars(query).all()
-    return render_template('index.html', title='Explore', posts=posts)
+    posts = db.paginate(query, page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
+    return render_template("index.html", title='Explore', posts=posts.items)
