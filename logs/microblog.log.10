@@ -1,4 +1,4 @@
-2025-01-13 17:29:14,112 ERROR: Exception on /index [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
+2025-01-13 17:22:25,661 ERROR: Exception on /index [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
@@ -116,5 +116,3 @@ WHERE user_2.id = ? OR user_1.id = ? GROUP BY post.id, post.body, post.timestamp
  LIMIT ? OFFSET ?]
 [parameters: (2, 2, 25, 0)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
-2025-01-13 17:29:21,871 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]
-2025-01-13 17:29:36,691 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]

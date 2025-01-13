@@ -1,4 +1,4 @@
-2025-01-13 17:29:14,112 ERROR: Exception on /index [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
+2025-01-13 17:23:26,942 ERROR: Exception on /index [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
@@ -114,7 +114,6 @@ sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post
 FROM post JOIN user AS user_1 ON user_1.id = post.user_id LEFT OUTER JOIN (followers AS followers_1 JOIN user AS user_2 ON followers_1.follower_id = user_2.id) ON followers_1.followed_id = user_1.id 
 WHERE user_2.id = ? OR user_1.id = ? GROUP BY post.id, post.body, post.timestamp, post.user_id, post.language ORDER BY post.timestamp DESC
  LIMIT ? OFFSET ?]
-[parameters: (2, 2, 25, 0)]
+[parameters: (1, 1, 25, 0)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
-2025-01-13 17:29:21,871 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]
-2025-01-13 17:29:36,691 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]
+2025-01-13 17:27:03,873 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]

@@ -1,4 +1,4 @@
-2025-01-13 17:29:14,112 ERROR: Exception on /index [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
+2025-01-13 17:22:50,456 ERROR: Exception on /user/John [GET] [in /Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
@@ -27,8 +27,8 @@ Traceback (most recent call last):
   File "/Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/Users/farhan/projects/microblog/app/routes.py", line 53, in index
-    posts = db.paginate(current_user.following_posts(), page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
+  File "/Users/farhan/projects/microblog/app/routes.py", line 103, in user
+    posts = db.paginate(query, page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
   File "/Users/farhan/projects/microblog/venv/lib/python3.13/site-packages/flask_sqlalchemy/extension.py", line 839, in paginate
     return SelectPagination(
         select=select,
@@ -111,10 +111,8 @@ Traceback (most recent call last):
     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
 sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.language
 [SQL: SELECT post.id, post.body, post.timestamp, post.user_id, post.language 
-FROM post JOIN user AS user_1 ON user_1.id = post.user_id LEFT OUTER JOIN (followers AS followers_1 JOIN user AS user_2 ON followers_1.follower_id = user_2.id) ON followers_1.followed_id = user_1.id 
-WHERE user_2.id = ? OR user_1.id = ? GROUP BY post.id, post.body, post.timestamp, post.user_id, post.language ORDER BY post.timestamp DESC
+FROM post 
+WHERE ? = post.user_id ORDER BY post.timestamp DESC
  LIMIT ? OFFSET ?]
-[parameters: (2, 2, 25, 0)]
+[parameters: (2, 25, 0)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
-2025-01-13 17:29:21,871 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]
-2025-01-13 17:29:36,691 INFO: Microblog startup [in /Users/farhan/projects/microblog/app/__init__.py:53]
